@@ -4,15 +4,22 @@ import java.util.ArrayList;
 
 public class Database {
 
+    private static Database instancia;
+
     ArrayList<Mascota> mascotas = new ArrayList<>();
     ArrayList<Veterinario> veterinarios = new ArrayList<>();
 
-    public Database() {
-        mascotas.add(new Mascota("Amadeus", 9, "Pitbull"));
-        mascotas.add(new Mascota("Athena", 3, "Rottweiler"));
-        mascotas.add(new Mascota("Sacha", 7, "Doberman"));
-        mascotas.add(new Mascota("Zeus", 1, "Pitbull"));
+    private Database() {
+        mascotas.add(new Mascota.Builder().name("Amadeus").age(9).race("Pitbull").build());
+        mascotas.add(new Mascota.Builder().name("Athena").age(3).race("Rottweilrt").build());
+        mascotas.add(new Mascota.Builder().name("Sacha").age(7).race("Doberman").build());
+        mascotas.add(new Mascota.Builder().name("Zeus").age(1).race("Pitbull").build());
+    }
 
-
+    public static Database getInstance() {
+        if (instancia == null) {
+            instancia = new Database();
+        }
+        return instancia;
     }
 }

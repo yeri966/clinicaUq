@@ -5,10 +5,36 @@ public class Mascota {
     private int age;
     private String race;
 
-    public Mascota(String name, int age, String race) {
-        this.name = name;
-        this.age = age;
-        this.race = race;
+    private Mascota(Builder builder) {
+        this.name = builder.name;
+        this.age = builder.age;
+        this.race = builder.race;
+    }
+
+    public static class Builder {
+        private String name;
+        private int age;
+        private String race;
+
+        public Builder name(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder age(int age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder race(String race) {
+            this.race = race;
+            return this;
+        }
+
+        public Mascota build() {
+            return new Mascota(this);
+        }
+
     }
 
     public String getName() {
@@ -18,6 +44,7 @@ public class Mascota {
     public void setName(String name) {
         this.name = name;
     }
+
     public int getAge() {
         return age;
     }
